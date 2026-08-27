@@ -2,7 +2,7 @@
 
 本目录是 [MDTSH/mcp_marketdata](https://github.com/MDTSH/mcp_marketdata) 发布的 **市场数据根目录**。
 
-MCP Python 与 Excel RawMD 的 **root** = **本文件夹**。主索引文件名：`MCP_MARKET_DATA_YYYYMMDD.json`（例如 `MCP_MARKET_DATA_20260826.json`）。JSON 内的相对路径（`hist_file`、`current_file`、`file`、约定 sidecar 文件名）都相对这里解析。
+配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用；Manager / Store 指向本仓库 `market_data/`（即本文件夹）。MCP Python 与 Excel RawMD 的 **root** = **本文件夹**。主索引文件名：`MCP_MARKET_DATA_YYYYMMDD.json`（例如 `MCP_MARKET_DATA_20260826.json`）。JSON 内的相对路径（`hist_file`、`current_file`、`file`、约定 sidecar 文件名）都相对这里解析。
 
 数据包覆盖滚动约 **90 个自然日** 的日终快照。加载器读原始报价（利率、远期点、波动率、HIST 价格），再 Bootstrap / 插值成 MCP 对象。
 

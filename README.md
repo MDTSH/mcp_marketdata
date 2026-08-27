@@ -2,9 +2,10 @@
 
 面向 **MCP Python** 与 **Excel（RawMD / LiveStore）** 的可发布市场数据包。仓库公开滚动约 **90 个自然日** 的日终快照。
 
-把 Manager / Store 的 root 指到 **[`market_data/`](market_data/README.md)**（不要指仓库根目录）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。JSON 里的相对路径（`hist_file`、`current_file`、`file` 以及约定 sidecar 文件名）都相对 `market_data/` 解析。
+配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用；Manager / Store 指向本仓库 [`market_data/`](market_data/README.md)（不要指仓库根目录）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。JSON 里的相对路径（`hist_file`、`current_file`、`file` 以及约定 sidecar 文件名）都相对 `market_data/` 解析。
 
 - 仓库：https://github.com/MDTSH/mcp_marketdata
+- Excel / Python 包：[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
 - 分类、字段与用法详见 [`market_data/README.md`](market_data/README.md)
 
 ## 快速开始
