@@ -1,0 +1,233 @@
+{
+  "_comment": "南方中证1000ETF (512100) 穿透持仓数据",
+  "fund_code": "512100",
+  "fund_code_alt": "512100SH",
+  "valuation_date": "2025-03-31",
+  "data_source": "天天基金",
+  "holdings": [
+    {
+      "instrument_code": "002456",
+      "stock_name": "欧菲光",
+      "weight": 0.0059,
+      "weight_pct": 0.59,
+      "market_value": 30278.79,
+      "sector": "科技",
+      "industry": "电子",
+      "market_cap": 3000000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.25,
+        "value": 0.35,
+        "momentum": 0.60,
+        "quality": 0.65,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.006,
+      "stock_return": 0.12,
+      "benchmark_return": 0.10
+    },
+    {
+      "instrument_code": "688608",
+      "stock_name": "恒玄科技",
+      "weight": 0.0043,
+      "weight_pct": 0.43,
+      "market_value": 21951.98,
+      "sector": "科技",
+      "industry": "半导体",
+      "market_cap": 2000000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.20,
+        "value": 0.25,
+        "momentum": 0.70,
+        "quality": 0.75,
+        "volatility": 0.65
+      },
+      "benchmark_weight": 0.004,
+      "stock_return": 0.16,
+      "benchmark_return": 0.13
+    },
+    {
+      "instrument_code": "688235",
+      "stock_name": "百济神州",
+      "weight": 0.0040,
+      "weight_pct": 0.40,
+      "market_value": 20616.79,
+      "sector": "医疗保健",
+      "industry": "生物医药",
+      "market_cap": 1500000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.18,
+        "value": 0.20,
+        "momentum": 0.75,
+        "quality": 0.80,
+        "volatility": 0.70
+      },
+      "benchmark_weight": 0.004,
+      "stock_return": 0.18,
+      "benchmark_return": 0.15
+    },
+    {
+      "instrument_code": "002851",
+      "stock_name": "麦格米特",
+      "weight": 0.0039,
+      "weight_pct": 0.39,
+      "market_value": 19917.82,
+      "sector": "工业",
+      "industry": "电气设备",
+      "market_cap": 1200000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.15,
+        "value": 0.30,
+        "momentum": 0.65,
+        "quality": 0.70,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.004,
+      "stock_return": 0.14,
+      "benchmark_return": 0.12
+    },
+    {
+      "instrument_code": "300458",
+      "stock_name": "全志科技",
+      "weight": 0.0034,
+      "weight_pct": 0.34,
+      "market_value": 17556.19,
+      "sector": "科技",
+      "industry": "半导体",
+      "market_cap": 1000000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.12,
+        "value": 0.28,
+        "momentum": 0.68,
+        "quality": 0.72,
+        "volatility": 0.62
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.15,
+      "benchmark_return": 0.12
+    },
+    {
+      "instrument_code": "600363",
+      "stock_name": "联创光电",
+      "weight": 0.0034,
+      "weight_pct": 0.34,
+      "market_value": 17305.19,
+      "sector": "科技",
+      "industry": "电子",
+      "market_cap": 800000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.10,
+        "value": 0.32,
+        "momentum": 0.62,
+        "quality": 0.68,
+        "volatility": 0.58
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.13,
+      "benchmark_return": 0.11
+    },
+    {
+      "instrument_code": "002126",
+      "stock_name": "银轮股份",
+      "weight": 0.0033,
+      "weight_pct": 0.33,
+      "market_value": 17212.94,
+      "sector": "工业",
+      "industry": "汽车零部件",
+      "market_cap": 700000000,
+      "market_cap_bucket": "SMALL",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.08,
+        "value": 0.55,
+        "momentum": 0.40,
+        "quality": 0.60,
+        "volatility": 0.50
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.08,
+      "benchmark_return": 0.07
+    },
+    {
+      "instrument_code": "300346",
+      "stock_name": "南大光电",
+      "weight": 0.0031,
+      "weight_pct": 0.31,
+      "market_value": 15720.07,
+      "sector": "科技",
+      "industry": "半导体",
+      "market_cap": 600000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.06,
+        "value": 0.25,
+        "momentum": 0.70,
+        "quality": 0.75,
+        "volatility": 0.65
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.16,
+      "benchmark_return": 0.13
+    },
+    {
+      "instrument_code": "002405",
+      "stock_name": "四维图新",
+      "weight": 0.0030,
+      "weight_pct": 0.30,
+      "market_value": 15569.63,
+      "sector": "科技",
+      "industry": "软件",
+      "market_cap": 500000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.05,
+        "value": 0.30,
+        "momentum": 0.65,
+        "quality": 0.70,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.14,
+      "benchmark_return": 0.11
+    },
+    {
+      "instrument_code": "002130",
+      "stock_name": "沃尔核材",
+      "weight": 0.0030,
+      "weight_pct": 0.30,
+      "market_value": 15228.44,
+      "sector": "工业",
+      "industry": "电气设备",
+      "market_cap": 400000000,
+      "market_cap_bucket": "SMALL",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.04,
+        "value": 0.60,
+        "momentum": 0.35,
+        "quality": 0.55,
+        "volatility": 0.45
+      },
+      "benchmark_weight": 0.003,
+      "stock_return": 0.07,
+      "benchmark_return": 0.06
+    }
+  ],
+  "_metadata": {
+    "total_weight": 0.0373,
+    "note": "仅包含前10大持仓。实际ETF可能持有1000只股票，总权重应接近1.0"
+  }
+}

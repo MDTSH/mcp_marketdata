@@ -1,0 +1,233 @@
+{
+  "_comment": "南方中证500ETF (510500) 穿透持仓数据",
+  "fund_code": "510500",
+  "fund_code_alt": "510500SH",
+  "valuation_date": "2025-03-31",
+  "data_source": "天天基金",
+  "holdings": [
+    {
+      "instrument_code": "600418",
+      "stock_name": "江淮汽车",
+      "weight": 0.0085,
+      "weight_pct": 0.85,
+      "market_value": 80611.90,
+      "sector": "工业",
+      "industry": "汽车",
+      "market_cap": 30000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.60,
+        "value": 0.45,
+        "momentum": 0.50,
+        "quality": 0.60,
+        "volatility": 0.55
+      },
+      "benchmark_weight": 0.008,
+      "stock_return": 0.08,
+      "benchmark_return": 0.075
+    },
+    {
+      "instrument_code": "002625",
+      "stock_name": "光启技术",
+      "weight": 0.0077,
+      "weight_pct": 0.77,
+      "market_value": 73143.45,
+      "sector": "工业",
+      "industry": "航空航天",
+      "market_cap": 25000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.55,
+        "value": 0.40,
+        "momentum": 0.55,
+        "quality": 0.65,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.007,
+      "stock_return": 0.10,
+      "benchmark_return": 0.085
+    },
+    {
+      "instrument_code": "300476",
+      "stock_name": "胜宏科技",
+      "weight": 0.0066,
+      "weight_pct": 0.66,
+      "market_value": 62753.02,
+      "sector": "科技",
+      "industry": "电子",
+      "market_cap": 20000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.50,
+        "value": 0.35,
+        "momentum": 0.60,
+        "quality": 0.70,
+        "volatility": 0.55
+      },
+      "benchmark_weight": 0.006,
+      "stock_return": 0.12,
+      "benchmark_return": 0.10
+    },
+    {
+      "instrument_code": "002384",
+      "stock_name": "东山精密",
+      "weight": 0.0060,
+      "weight_pct": 0.60,
+      "market_value": 57325.78,
+      "sector": "科技",
+      "industry": "电子",
+      "market_cap": 18000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.48,
+        "value": 0.40,
+        "momentum": 0.55,
+        "quality": 0.65,
+        "volatility": 0.50
+      },
+      "benchmark_weight": 0.006,
+      "stock_return": 0.10,
+      "benchmark_return": 0.085
+    },
+    {
+      "instrument_code": "000988",
+      "stock_name": "华工科技",
+      "weight": 0.0056,
+      "weight_pct": 0.56,
+      "market_value": 53248.58,
+      "sector": "科技",
+      "industry": "电子",
+      "market_cap": 15000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.45,
+        "value": 0.35,
+        "momentum": 0.60,
+        "quality": 0.70,
+        "volatility": 0.55
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.11,
+      "benchmark_return": 0.095
+    },
+    {
+      "instrument_code": "300339",
+      "stock_name": "润和软件",
+      "weight": 0.0056,
+      "weight_pct": 0.56,
+      "market_value": 52968.51,
+      "sector": "科技",
+      "industry": "软件",
+      "market_cap": 12000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.40,
+        "value": 0.30,
+        "momentum": 0.65,
+        "quality": 0.65,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.13,
+      "benchmark_return": 0.11
+    },
+    {
+      "instrument_code": "600988",
+      "stock_name": "赤峰黄金",
+      "weight": 0.0052,
+      "weight_pct": 0.52,
+      "market_value": 49136.62,
+      "sector": "原材料",
+      "industry": "贵金属",
+      "market_cap": 10000000000,
+      "market_cap_bucket": "MID",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.38,
+        "value": 0.45,
+        "momentum": 0.50,
+        "quality": 0.60,
+        "volatility": 0.65
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.09,
+      "benchmark_return": 0.08
+    },
+    {
+      "instrument_code": "600839",
+      "stock_name": "四川长虹",
+      "weight": 0.0051,
+      "weight_pct": 0.51,
+      "market_value": 48741.24,
+      "sector": "消费",
+      "industry": "家电",
+      "market_cap": 8000000000,
+      "market_cap_bucket": "MID",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.35,
+        "value": 0.60,
+        "momentum": 0.30,
+        "quality": 0.55,
+        "volatility": 0.45
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.05,
+      "benchmark_return": 0.045
+    },
+    {
+      "instrument_code": "688521",
+      "stock_name": "芯原股份",
+      "weight": 0.0050,
+      "weight_pct": 0.50,
+      "market_value": 47810.40,
+      "sector": "科技",
+      "industry": "半导体",
+      "market_cap": 6000000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.30,
+        "value": 0.25,
+        "momentum": 0.70,
+        "quality": 0.75,
+        "volatility": 0.65
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.15,
+      "benchmark_return": 0.12
+    },
+    {
+      "instrument_code": "603893",
+      "stock_name": "瑞芯微",
+      "weight": 0.0049,
+      "weight_pct": 0.49,
+      "market_value": 46390.76,
+      "sector": "科技",
+      "industry": "半导体",
+      "market_cap": 5000000000,
+      "market_cap_bucket": "SMALL",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.28,
+        "value": 0.30,
+        "momentum": 0.65,
+        "quality": 0.70,
+        "volatility": 0.60
+      },
+      "benchmark_weight": 0.005,
+      "stock_return": 0.14,
+      "benchmark_return": 0.11
+    }
+  ],
+  "_metadata": {
+    "total_weight": 0.0601,
+    "note": "仅包含前10大持仓。实际ETF可能持有500只股票，总权重应接近1.0"
+  }
+}

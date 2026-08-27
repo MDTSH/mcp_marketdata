@@ -1,0 +1,58 @@
+{
+  "_comment": "债券基本信息库，用于根据债券代码查询债券的基本信息（到期日、票息等）",
+  "bonds": {
+    "019776": {
+      "bond_name": "25特国02",
+      "maturity_date": "2050-01-15",
+      "coupon_rate": 0.035,
+      "frequency": 2,
+      "coupon_type": "INTEREST",
+      "issuer": "财政部",
+      "credit_rating": "AAA",
+      "industry": "政府债券"
+    },
+    "019789": {
+      "bond_name": "25特国06",
+      "maturity_date": "2051-06-15",
+      "coupon_rate": 0.034,
+      "frequency": 2,
+      "coupon_type": "INTEREST",
+      "issuer": "财政部",
+      "credit_rating": "AAA",
+      "industry": "政府债券"
+    },
+    "019742": {
+      "bond_name": "24特国01",
+      "maturity_date": "2049-01-15",
+      "coupon_rate": 0.033,
+      "frequency": 2,
+      "coupon_type": "INTEREST",
+      "issuer": "财政部",
+      "credit_rating": "AAA",
+      "industry": "政府债券"
+    },
+    "019784": {
+      "bond_name": "25特国05",
+      "maturity_date": "2050-05-15",
+      "coupon_rate": 0.0345,
+      "frequency": 2,
+      "coupon_type": "INTEREST",
+      "issuer": "财政部",
+      "credit_rating": "AAA",
+      "industry": "政府债券"
+    },
+    "019767": {
+      "bond_name": "25国债02",
+      "maturity_date": "2048-02-15",
+      "coupon_rate": 0.032,
+      "frequency": 2,
+      "coupon_type": "INTEREST",
+      "issuer": "财政部",
+      "credit_rating": "AAA",
+      "industry": "政府债券"
+    }
+  },
+  "_metadata": {
+    "note": "如果穿透数据中提供了债券基本信息，优先使用穿透数据；如果缺失，从此文件查询"
+  }
+}

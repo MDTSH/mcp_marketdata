@@ -97,7 +97,7 @@ try {
     }
 
     Write-Log "running verify_window.py --days $Days"
-    & $python $verify --dest $RepoRoot --days $Days
+    & $python $verify --source $SourceDefault --dest $RepoRoot --days $Days
     if ($LASTEXITCODE -ne 0) {
         Write-Log "verify_window.py failed exit=$LASTEXITCODE" "ERROR"
         exit $LASTEXITCODE

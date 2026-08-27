@@ -1,0 +1,233 @@
+{
+  "_comment": "华泰柏瑞沪深300ETF (510300) 穿透持仓数据",
+  "fund_code": "510300",
+  "fund_code_alt": "510300SH",
+  "valuation_date": "2025-03-31",
+  "data_source": "天天基金",
+  "holdings": [
+    {
+      "instrument_code": "600519",
+      "stock_name": "贵州茅台",
+      "weight": 0.0474,
+      "weight_pct": 4.74,
+      "market_value": 1606717.16,
+      "sector": "消费",
+      "industry": "白酒",
+      "market_cap": 2000000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.95,
+        "value": 0.45,
+        "momentum": 0.50,
+        "quality": 0.90,
+        "volatility": 0.25
+      },
+      "benchmark_weight": 0.045,
+      "stock_return": 0.08,
+      "benchmark_return": 0.075
+    },
+    {
+      "instrument_code": "300750",
+      "stock_name": "宁德时代",
+      "weight": 0.0323,
+      "weight_pct": 3.23,
+      "market_value": 1092918.96,
+      "sector": "工业",
+      "industry": "新能源",
+      "market_cap": 1000000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.90,
+        "value": 0.35,
+        "momentum": 0.60,
+        "quality": 0.75,
+        "volatility": 0.50
+      },
+      "benchmark_weight": 0.030,
+      "stock_return": 0.12,
+      "benchmark_return": 0.10
+    },
+    {
+      "instrument_code": "601318",
+      "stock_name": "中国平安",
+      "weight": 0.0268,
+      "weight_pct": 2.68,
+      "market_value": 909278.48,
+      "sector": "金融",
+      "industry": "保险",
+      "market_cap": 800000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.90,
+        "value": 0.70,
+        "momentum": 0.35,
+        "quality": 0.75,
+        "volatility": 0.30
+      },
+      "benchmark_weight": 0.025,
+      "stock_return": 0.05,
+      "benchmark_return": 0.048
+    },
+    {
+      "instrument_code": "600036",
+      "stock_name": "招商银行",
+      "weight": 0.0259,
+      "weight_pct": 2.59,
+      "market_value": 876632.95,
+      "sector": "金融",
+      "industry": "银行",
+      "market_cap": 800000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.90,
+        "value": 0.55,
+        "momentum": 0.40,
+        "quality": 0.85,
+        "volatility": 0.30
+      },
+      "benchmark_weight": 0.024,
+      "stock_return": 0.06,
+      "benchmark_return": 0.055
+    },
+    {
+      "instrument_code": "000333",
+      "stock_name": "美的集团",
+      "weight": 0.0185,
+      "weight_pct": 1.85,
+      "market_value": 627350.36,
+      "sector": "消费",
+      "industry": "家电",
+      "market_cap": 500000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.85,
+        "value": 0.50,
+        "momentum": 0.45,
+        "quality": 0.80,
+        "volatility": 0.30
+      },
+      "benchmark_weight": 0.017,
+      "stock_return": 0.07,
+      "benchmark_return": 0.065
+    },
+    {
+      "instrument_code": "600900",
+      "stock_name": "长江电力",
+      "weight": 0.0164,
+      "weight_pct": 1.64,
+      "market_value": 557080.87,
+      "sector": "公用事业",
+      "industry": "电力",
+      "market_cap": 500000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.85,
+        "value": 0.65,
+        "momentum": 0.30,
+        "quality": 0.75,
+        "volatility": 0.25
+      },
+      "benchmark_weight": 0.015,
+      "stock_return": 0.04,
+      "benchmark_return": 0.038
+    },
+    {
+      "instrument_code": "002594",
+      "stock_name": "比亚迪",
+      "weight": 0.0164,
+      "weight_pct": 1.64,
+      "market_value": 554305.96,
+      "sector": "工业",
+      "industry": "汽车",
+      "market_cap": 600000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.88,
+        "value": 0.40,
+        "momentum": 0.55,
+        "quality": 0.70,
+        "volatility": 0.55
+      },
+      "benchmark_weight": 0.015,
+      "stock_return": 0.10,
+      "benchmark_return": 0.085
+    },
+    {
+      "instrument_code": "601166",
+      "stock_name": "兴业银行",
+      "weight": 0.0152,
+      "weight_pct": 1.52,
+      "market_value": 513825.99,
+      "sector": "金融",
+      "industry": "银行",
+      "market_cap": 400000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "VALUE",
+      "factor_exposures": {
+        "size": 0.85,
+        "value": 0.70,
+        "momentum": 0.30,
+        "quality": 0.70,
+        "volatility": 0.35
+      },
+      "benchmark_weight": 0.014,
+      "stock_return": 0.045,
+      "benchmark_return": 0.042
+    },
+    {
+      "instrument_code": "601899",
+      "stock_name": "紫金矿业",
+      "weight": 0.0144,
+      "weight_pct": 1.44,
+      "market_value": 488414.27,
+      "sector": "原材料",
+      "industry": "有色金属",
+      "market_cap": 300000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.80,
+        "value": 0.50,
+        "momentum": 0.45,
+        "quality": 0.65,
+        "volatility": 0.50
+      },
+      "benchmark_weight": 0.013,
+      "stock_return": 0.07,
+      "benchmark_return": 0.065
+    },
+    {
+      "instrument_code": "300059",
+      "stock_name": "东方财富",
+      "weight": 0.0138,
+      "weight_pct": 1.38,
+      "market_value": 466755.96,
+      "sector": "金融",
+      "industry": "证券",
+      "market_cap": 200000000000,
+      "market_cap_bucket": "LARGE",
+      "style": "GROWTH",
+      "factor_exposures": {
+        "size": 0.80,
+        "value": 0.45,
+        "momentum": 0.50,
+        "quality": 0.70,
+        "volatility": 0.50
+      },
+      "benchmark_weight": 0.012,
+      "stock_return": 0.08,
+      "benchmark_return": 0.070
+    }
+  ],
+  "_metadata": {
+    "total_weight": 0.2171,
+    "note": "仅包含前10大持仓。实际ETF可能持有300只股票，总权重应接近1.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "Equity基准数据文件 - 用于Brinson归因计算",
+  "_description": "此文件包含基准组合的行业权重和收益率数据",
+
+  "benchmark_weights": {
+    "_comment": "基准行业权重（按sector分组，权重总和应为1.0）",
+    "Finance": 0.25,
+    "Technology": 0.20,
+    "Healthcare": 0.15,
+    "Energy": 0.10,
+    "Consumer": 0.10,
+    "Industrial": 0.10,
+    "Others": 0.10
+  },
+
+  "benchmark_returns": {
+    "_comment": "基准行业收益率（按sector分组，收益率应为小数形式，如0.02表示2%）",
+    "Finance": 0.015,
+    "Technology": 0.025,
+    "Healthcare": 0.020,
+    "Energy": 0.010,
+    "Consumer": 0.018,
+    "Industrial": 0.012,
+    "Others": 0.014
+  }
+}

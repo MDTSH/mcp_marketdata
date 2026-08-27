@@ -1,0 +1,9 @@
+{
+  "holdings": [
+    {"code": "000001", "stock_name": "平安银行", "sector": "Financial", "weight": 0.05, "factor_exposures": {"market": 1.02, "size": 0.15, "value": 0.08, "momentum": -0.02}},
+    {"code": "000002", "stock_name": "万科A", "sector": "RealEstate", "weight": 0.03, "factor_exposures": {"market": 0.98, "size": 0.12, "value": 0.15, "momentum": 0.01}},
+    {"code": "000300", "stock_name": "沪深300", "sector": "Index", "weight": 0.92, "factor_exposures": {"market": 1.0, "size": 0.0, "value": 0.0, "momentum": 0.0}}
+  ],
+  "default_yield_curve_key": "CNY_BOND",
+  "valuation_date": "2025-06-30"
+}

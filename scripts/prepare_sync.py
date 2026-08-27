@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """Prepare a rolling calendar-day window of MCP market data for the public repo.
 
-Copies MCP_MARKET_DATA_YYYYMMDD.json and referenced HIST/current CSVs from a
-source snapshots directory (default Z:\\market_data\\snapshots) into dest/snapshots,
+Copies MCP_MARKET_DATA_YYYYMMDD.json, referenced HIST/current CSVs, and
+auxiliary sidecars (BOND_INFO, dividends, classification, …) from a source
+snapshots directory (default Z:\\market_data\\snapshots) into dest/snapshots,
 preserving relative paths so RawMD/LiveStore still resolve.
 
 This script does not run git commit or git push. weekly_sync.ps1 owns git.
@@ -27,10 +28,29 @@ DEFAULT_DAYS = 90
 JSON_NAME_RE = re.compile(r"^MCP_MARKET_DATA_(\d{8})\.json$", re.IGNORECASE)
 PUBLISHED_DIR = "snapshots"
 REPORTS_DIR = "reports"
-FILE_REF_KEYS = ("hist_file", "current_file", "file")
+FILE_REF_KEYS = (
+    "hist_file",
+    "current_file",
+    "file",
+    "file_path",
+    "bond_info",
+    "dividend_file",
+    "dividends_file",
+    "dividends",
+    "corporate_actions",
+    "corporate_actions_file",
+    "classification_file",
+    "instrument_classification",
+)
 HIST_REF_KEYS = ("hist_file",)
+CURRENT_FILE_KEYS = ("current_file",)
+# Do not delete hand-written dest files that are not copied from source.
+DEST_KEEP_RELPATHS = frozenset({"README.md"})
 DATE_HEADER_CANDIDATES = (
     "valuation_date",
+    "asof_date",
+    "ex_date",
+    "exdate",
     "date",
     "Date",
     "DATE",
@@ -38,6 +58,63 @@ DATE_HEADER_CANDIDATES = (
     "TradeDate",
     "TRADEDATE",
 )
+# Loader-needed sidecars that JSON often does not list (BatchManager / ch03).
+WELL_KNOWN_EXACT = frozenset(
+    {
+        "BOND_INFO.csv",
+        "BOND_INFO.json",
+        "BOND_INFO_SPEC.csv",
+        "dividends.csv",
+        "corporate_actions.csv",
+        "INSTRUMENT_CLASSIFICATION.csv",
+        "INSTRUMENT_VOLATILITY.csv",
+        "EQUITY_INFO.csv",
+        "FUND_INFO.csv",
+        "FUTURE_INFO.csv",
+        "future_multipliers.csv",
+        "instrument_fees.csv",
+        "fund_fees.csv",
+        "bond_tax_rates.csv",
+        "CALLABLEBOND_IR_VOLS.csv",
+        "IR_INDEX_FIXINGS_HIST.csv",
+        "code_mapping.csv",
+        "benchmark_mapping.csv",
+        "BENCHMARK_EQUITY.json",
+        "bond_future_deliverables.csv",
+        "brinson_stock_holdings.csv",
+        "brinson_sector_benchmark.csv",
+        "funding_rates.csv",
+    }
+)
+# Event / static tables: copy whole. Do not trim by maturity_date / ex_date.
+REFERENCE_NO_TRIM = frozenset(
+    {
+        "BOND_INFO.CSV",
+        "BOND_INFO.JSON",
+        "BOND_INFO_SPEC.CSV",
+        "DIVIDENDS.CSV",
+        "CORPORATE_ACTIONS.CSV",
+        "INSTRUMENT_CLASSIFICATION.CSV",
+        "EQUITY_INFO.CSV",
+        "FUND_INFO.CSV",
+        "FUTURE_INFO.CSV",
+        "FUTURE_MULTIPLIERS.CSV",
+        "INSTRUMENT_FEES.CSV",
+        "FUND_FEES.CSV",
+        "BOND_TAX_RATES.CSV",
+        "CALLABLEBOND_IR_VOLS.CSV",
+        "CODE_MAPPING.CSV",
+        "BENCHMARK_MAPPING.CSV",
+        "BENCHMARK_EQUITY.JSON",
+        "BOND_FUTURE_DELIVERABLES.CSV",
+        "BRINSON_STOCK_HOLDINGS.CSV",
+        "BRINSON_SECTOR_BENCHMARK.CSV",
+        "FUNDING_RATES.CSV",
+    }
+)
+# Dated aux that is not *_HIST* but should follow the 90-day window.
+DATED_AUX_TRIM = frozenset({"INSTRUMENT_VOLATILITY.CSV"})
+SKIP_SIDECAR_RE = re.compile(r"(\.bak|\(2\)|~\$)", re.I)
 GITHUB_SOFT_LIMIT_BYTES = 90 * 1024 * 1024
 GITHUB_HARD_LIMIT_BYTES = 100 * 1024 * 1024
 # Publish cap: GitHub.com rejects blobs >= 100MB and this repo must not use LFS.
@@ -118,10 +195,30 @@ def list_source_json(source: str) -> List[str]:
     return out
 
 
+def looks_like_relpath(value: str) -> bool:
+    v = (value or "").strip()
+    if not v:
+        return False
+    low = v.lower()
+    return low.endswith(".csv") or low.endswith(".json")
+
+
+def is_file_ref_key(key: str) -> bool:
+    k = str(key)
+    if k in FILE_REF_KEYS:
+        return True
+    kl = k.lower()
+    if kl.endswith("_file") or kl.endswith("_path"):
+        return True
+    if "dividend" in kl and "method" not in kl:
+        return True
+    return False
+
+
 def walk_file_refs(obj: Any) -> Iterable[Tuple[str, str]]:
     if isinstance(obj, dict):
         for key, value in obj.items():
-            if key in FILE_REF_KEYS and isinstance(value, str):
+            if is_file_ref_key(key) and isinstance(value, str) and looks_like_relpath(value):
                 rel = value.strip().replace("\\", "/")
                 if rel:
                     yield key, rel
@@ -129,6 +226,58 @@ def walk_file_refs(obj: Any) -> Iterable[Tuple[str, str]]:
     elif isinstance(obj, list):
         for item in obj:
             yield from walk_file_refs(item)
+
+
+def sidecar_skip(name: str) -> bool:
+    return bool(SKIP_SIDECAR_RE.search(name or ""))
+
+
+def is_well_known_sidecar_name(name: str) -> bool:
+    if not name or sidecar_skip(name):
+        return False
+    if name in WELL_KNOWN_EXACT:
+        return True
+    upper = name.upper()
+    if upper.startswith("BOND_INFO") and upper.endswith((".CSV", ".JSON")):
+        return True
+    if "DIVIDEND" in upper and upper.endswith(".CSV"):
+        return True
+    if upper.startswith("INSTRUMENT_CLASSIFICATION") and upper.endswith(".CSV"):
+        return True
+    if upper.startswith("FUND_HOLDINGS_BREAKDOWN_") and upper.endswith(".JSON"):
+        return True
+    return False
+
+
+def list_well_known_sidecars(source: str) -> Tuple[Set[str], List[str]]:
+    """Return (present relative names, WELL_KNOWN_EXACT names missing on source)."""
+    present: Set[str] = set()
+    if os.path.isdir(source):
+        for name in os.listdir(source):
+            if is_well_known_sidecar_name(name) and os.path.isfile(os.path.join(source, name)):
+                present.add(name)
+    missing = sorted(n for n in WELL_KNOWN_EXACT if n not in present)
+    return present, missing
+
+
+def should_trim_csv(rel: str, is_hist_ref: bool) -> bool:
+    name = os.path.basename(rel)
+    upper = name.upper()
+    if is_hist_ref or "_HIST" in upper:
+        return True
+    if upper in DATED_AUX_TRIM:
+        return True
+    if upper.startswith("BOND_INFO"):
+        return False
+    if "DIVIDEND" in upper:
+        return False
+    if upper.startswith("INSTRUMENT_CLASSIFICATION"):
+        return False
+    if upper.startswith("FUND_HOLDINGS_BREAKDOWN_"):
+        return False
+    if upper in REFERENCE_NO_TRIM:
+        return False
+    return False
 
 
 def load_json(path: str) -> Any:
@@ -429,6 +578,7 @@ def build_report(
     dangling: List[str],
     dest_size: int,
     warnings: List[str],
+    sidecar_missing: Optional[List[str]] = None,
 ) -> str:
     lines = [
         f"# SYNC_REPORT_{as_of.strftime('%Y%m%d')}",
@@ -437,7 +587,7 @@ def build_report(
         f"- window: {start.isoformat()} .. {as_of.isoformat()} ({days} calendar days)",
         f"- source: `{source}`",
         f"- dest: `{dest}`",
-        f"- published_dir: `{PUBLISHED_DIR}` (source mixes JSON + HIST; relative names kept)",
+        f"- published_dir: `{PUBLISHED_DIR}` (source mixes JSON + HIST + aux; relative names kept)",
         f"- dry_run: {str(dry_run).lower()}",
         f"- dest_published_size: {format_mb(dest_size)}",
         "",
@@ -453,7 +603,7 @@ def build_report(
     lines.extend(f"  - {n}" for n in json_unchanged) if json_unchanged else lines.append("  - (none)")
     lines.append(f"- deleted ({len(json_deleted)}):")
     lines.extend(f"  - {n}" for n in json_deleted) if json_deleted else lines.append("  - (none)")
-    lines.extend(["", "## HIST / referenced files", ""])
+    lines.extend(["", "## HIST / referenced / auxiliary files", ""])
     lines.append("| file | action | rows_before | rows_after | unparsed | dest_size |")
     lines.append("|---|---|---:|---:|---:|---|")
     for st in hist_stats:
@@ -470,6 +620,11 @@ def build_report(
     lines.extend(["", "## Dangling refs", ""])
     if dangling:
         lines.extend(f"- `{p}`" for p in dangling)
+    else:
+        lines.append("- (none)")
+    lines.extend(["", "## Well-known sidecars missing on source", ""])
+    if sidecar_missing:
+        lines.extend(f"- `{p}`" for p in sidecar_missing)
     else:
         lines.append("- (none)")
     lines.extend(["", "## Warnings", ""])
@@ -515,6 +670,8 @@ def prepare(
     print(f"JSON keep {len(keep_json)} / source {len(all_json)} (outside {outside})")
 
     refs, hist_refs, date_cols = collect_refs_from_json_files(keep_json)
+    sidecar_present, sidecar_missing = list_well_known_sidecars(source)
+    refs.update(sidecar_present)
     safe_refs: Set[str] = set()
     dangling: List[str] = []
     for rel in sorted(refs):
@@ -563,12 +720,13 @@ def prepare(
         src_path = os.path.join(source, *rel.split("/"))
         dest_path = os.path.join(published, *rel.split("/"))
         is_hist = rel in hist_safe
+        do_trim = should_trim_csv(rel, is_hist)
         st = trim_or_copy_csv(
             src_path,
             dest_path,
             start,
             date_cols.get(rel),
-            trim=is_hist,
+            trim=do_trim,
             dry_run=dry_run,
         )
         st["dest"] = dest_path
@@ -579,7 +737,9 @@ def prepare(
         )
         if st.get("missing") and rel in hist_safe:
             warnings.append(f"missing hist_file: {rel}")
-        if int(st.get("rows_unparsed") or 0) > 0 and is_hist:
+        elif st.get("missing") and rel in sidecar_present:
+            warnings.append(f"missing auxiliary file: {rel}")
+        if int(st.get("rows_unparsed") or 0) > 0 and do_trim:
             warnings.append(f"{rel}: {st['rows_unparsed']} rows dropped (unparsed date)")
         if st.get("github_cap_from"):
             warnings.append(
@@ -596,7 +756,13 @@ def prepare(
                 f"{rel}: dest size {format_mb(int(st['bytes_dest']))} is near GitHub 100MB limit."
             )
 
-    stale_others = existing_others - safe_refs
+    if sidecar_missing:
+        warnings.append(
+            "well-known sidecars missing on source (not published): "
+            + ", ".join(sidecar_missing)
+        )
+
+    stale_others = existing_others - safe_refs - DEST_KEEP_RELPATHS
     for rel in sorted(stale_others):
         dest_path = os.path.join(published, *rel.split("/"))
         if not dry_run and os.path.isfile(dest_path):
@@ -634,6 +800,7 @@ def prepare(
         dangling,
         dest_size,
         warnings,
+        sidecar_missing,
     )
     report_name = f"SYNC_REPORT_{as_of.strftime('%Y%m%d')}.md"
     report_path = os.path.join(reports, report_name)

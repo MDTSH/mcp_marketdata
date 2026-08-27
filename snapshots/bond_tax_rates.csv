@@ -1,0 +1,50 @@
+instrument_code,bond_type,investor_type,coupon_vat_rate,coupon_income_tax_rate,capital_gains_vat_rate,capital_gains_income_tax_rate,description
+# ============================================================
+# 债券税率配置（bond_tax_rates.csv）
+# 加载路径：MarketDataManager → loadBondTaxRates(snapshots/bond_tax_rates.csv)
+#
+# 字段说明：
+#   instrument_code         精确券代码，* 表示通配符（优先精确匹配）
+#   bond_type               债券大类：TREASURY / LOCAL_GOV / POLICY / CREDIT / CONVERT / ALL
+#   investor_type           持有人类型：BANK / INSURANCE / FUND / BROKER / GENERAL（默认 GENERAL）
+#   coupon_vat_rate         票息增值税率（小数），如 0.06 = 6%；0 = 免税
+#   coupon_income_tax_rate  票息所得税率（小数），如 0.25 = 25%；0 = 免税
+#   capital_gains_vat_rate  价差增值税率（小数），如 0.06 = 6%；0 = 免税
+#   capital_gains_income_tax_rate 价差所得税率，如 0.25 = 25%；0 = 免税
+#   description             备注
+#
+# 匹配优先级：精确 instrument_code > bond_type + investor_type > bond_type > *（最宽泛）
+# 税后总收益 = 税前总盈亏 - COUPON_VAT - COUPON_INCOME_TAX - CAPITAL_GAINS_VAT - CAPITAL_GAINS_INCOME_TAX
+# ============================================================
+#
+# ---- 国债（财政部发行，持有期票息免增值税免所得税，买卖差价免增值税/征所得税） ----
+*,TREASURY,BANK,0.0,0.0,0.0,0.25,国债-银行：票息双免；价差免增值税/征25%企业所得税
+*,TREASURY,INSURANCE,0.0,0.0,0.0,0.25,国债-保险：票息双免；价差免增值税/征25%所得税
+*,TREASURY,FUND,0.0,0.0,0.0,0.0,国债-公募基金：票息双免；价差暂免企业所得税（过券到持有人）
+*,TREASURY,BROKER,0.0,0.0,0.0,0.25,国债-券商自营：票息双免；价差征25%所得税
+*,TREASURY,GENERAL,0.0,0.0,0.0,0.25,国债-一般：票息双免；价差征25%
+#
+# ---- 地方政府债（省市政府发行，税收政策参考国债） ----
+*,LOCAL_GOV,BANK,0.0,0.0,0.0,0.25,地方政府债-银行：票息双免；价差征25%所得税
+*,LOCAL_GOV,INSURANCE,0.0,0.0,0.0,0.25,地方政府债-保险
+*,LOCAL_GOV,FUND,0.0,0.0,0.0,0.0,地方政府债-公募基金：价差暂免
+*,LOCAL_GOV,GENERAL,0.0,0.0,0.0,0.25,地方政府债-一般
+#
+# ---- 政策性金融债（国开行/农发行/进出口行，票息增值税免；所得税视机构类型） ----
+*,POLICY,BANK,0.0,0.0,0.06,0.25,政策债-银行：票息免增值税；价差征6%增值税+25%所得税
+*,POLICY,INSURANCE,0.0,0.0,0.06,0.25,政策债-保险：同银行
+*,POLICY,FUND,0.0,0.0,0.06,0.0,政策债-公募基金：价差征6%增值税；所得税穿透持有人
+*,POLICY,GENERAL,0.0,0.0,0.06,0.25,政策债-一般
+#
+# ---- 信用债（企业债/公司债/中票/短融，一般纳税人：6%增值税 + 25%所得税） ----
+*,CREDIT,BANK,0.06,0.25,0.06,0.25,信用债-银行：票息+价差均征6%增值税+25%所得税
+*,CREDIT,INSURANCE,0.06,0.25,0.06,0.25,信用债-保险：同银行
+*,CREDIT,FUND,0.06,0.0,0.06,0.0,信用债-公募基金：增值税6%；所得税穿透
+*,CREDIT,BROKER,0.06,0.25,0.06,0.25,信用债-券商自营：同银行
+*,CREDIT,GENERAL,0.06,0.25,0.06,0.25,信用债-一般默认
+#
+# ---- 可转债（CONVERT，按信用债税率；转股后适用权益税） ----
+*,CONVERT,GENERAL,0.06,0.25,0.06,0.25,可转债-一般
+#
+# ---- 全产品通配（兜底，fallback；精确匹配优先） ----
+*,ALL,GENERAL,0.06,0.25,0.06,0.25,兜底：全产品/一般纳税人默认税率
