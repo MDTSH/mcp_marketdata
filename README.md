@@ -1,101 +1,76 @@
+[中文](README.md) | [English](README.en.md)
+
 # mcp_marketdata
 
 面向 **MCP Python** 与 **Excel（RawMD / LiveStore）** 的可发布市场数据包。仓库公开滚动约 **90 个自然日** 的日终快照。
 
-配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用；Manager / Store 指向本仓库 [`market_data/`](market_data/README.md)（不要指仓库根目录）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。JSON 里的相对路径（`hist_file`、`current_file`、`file` 以及约定 sidecar 文件名）都相对 `market_data/` 解析。
+配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用。把 Manager / Store 指到本仓库的 [`market_data/`](market_data/README.md)（不要指仓库根目录）。
 
 - 仓库：https://github.com/MDTSH/mcp_marketdata
 - Excel / Python 包：[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
-- 分类、字段与用法详见 [`market_data/README.md`](market_data/README.md)
+- 字段、对象类型与加载示例见 [`market_data/README.md`](market_data/README.md)
 
-## 快速开始
+## 包含了哪些市场数据
 
-克隆后，用本机上的 `market_data` 绝对路径（或工作簿相对路径）作为数据根：
+数据都在 `market_data/`。一日一份主索引 JSON，曲线和波动率写在 JSON 里；行情序列和静态表是同目录下的 CSV / JSON。
 
-**MCP Python**
+### 日主索引（曲线 / 曲面）
+
+每个估值日一个 `MCP_MARKET_DATA_YYYYMMDD.json`。加载器读原始报价，再 Bootstrap / 插值成 MCP 对象。
+
+- **收益率曲线（YieldCurve / YieldCurve2）**  
+  多币种存款 / 零息曲线，用于折现；第二套与外汇远期、外汇波动率配套。
+
+- **互换曲线（SwapCurve）**  
+  人民币 FR007 互换及多币种隔夜指数互换（OIS），用于利率产品定盘与折现。
+
+- **债券曲线与信用利差（BondCurve / BondSpreadCurve）**  
+  中债国债、政策性金融债、地方债及各评级信用债曲线，以及相对国债的利差曲线。
+
+- **外汇远期点（FXForwardPointsCurve / FXForwardPointsCurve2）**  
+  主要货币对的远期点数；第二套提供买卖价。
+
+- **外汇波动率曲面（FXVolSurface / FXVolSurface2）**  
+  外汇隐含波动率（期限 × Delta）；第二套提供买卖价波动率。
+
+- **权益 / 商品波动率与局部波动率（VolSurface / LocalVol）**  
+  股指、商品、贵金属的隐含波动率，以及局部波动率曲面。
+
+- **商品 / 贵金属远期（ForwardCurve）**  
+  原油、铜、金银等远期曲线。
+
+- **信用曲线（CreditCurve）**  
+  CDS 信用曲线分区；当前快照可能为空，加载器仍识别该类型。
+
+### 历史行情（HIST）
+
+按品种一份时间序列，供取价、历史波动率等使用。
+
+- **债券价格**：净价、成交量和到期收益率。
+- **外汇即期**：中间价，以及买卖价、开高低收等。
+- **股票 / 基金现货**：收盘价与成交量。
+- **股指期货 / 国债期货 / 商品期货**：合约行情。
+- **贵金属现货与定价**：黄金等现货及定价序列。
+- **理财产品净值**：财富管理产品价格序列（窗口内可能尚无行）。
+- **利率指标定盘**：如 EFFR 等历史定盘。
+
+### 静态辅助
+
+估值、情景和映射用的参考表，与主索引放在同一目录。
+
+- **债券条款（BOND_INFO）**：代码、到期日、票息、发行人、评级等。
+- **分红（dividends）**：基金 / 股票除权除息。
+- **工具分类**：产品大类与细类，供情景按分类冲击。
+- **标的信息**：股票、基金、期货的静态字段（乘数、费率、税率等）。
+- **映射与持仓**：交易代码与行情代码对照、业绩基准，以及部分基金持仓分解。
+- **其它约定表**：国债期货可交割券、融资利率、含权债利率波动率等。
+
+## 怎么用
+
+克隆后，把数据根设为 `market_data/` 的绝对路径（或相对工作簿的路径）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。完整示例与字段说明见 [`market_data/README.md`](market_data/README.md)。
 
 ```python
 import mcp
-
-root = r".../mcp_marketdata/market_data"  # 改成你的克隆路径
-
-mgr = mcp.MRawMarketManager(root)
+mgr = mcp.MRawMarketManager(r".../mcp_marketdata/market_data")
 yc = mgr.getYieldCurve("CNHDEPO", "20260826")
-fxvol = mgr.getFXVolSurface("USDCNH_RVOL_BGN", "20260826")
-
-store = mcp.MLiveMarketDataStore()
-store.loadSnapshot(root + r"/MCP_MARKET_DATA_20260826.json")
-```
-
-**Excel RawMD / LiveStore**
-
-```excel
-=McpRawMarketManager(".../mcp_marketdata/market_data")
-=rawmdGetYieldCurve2(A1, "CNHDEPO_2", "20260826")
-
-=McpLiveMarketDataStore(".../mcp_marketdata/market_data/MCP_MARKET_DATA_20260826.json")
-=mdlsGetFXVolSurface2(A1, "USDCNH_RVOL_BGN_2")
-```
-
-估值引擎可将 `raw_market_data_root` / `MCP_MARKET_DATA_ROOT` 指到同一 `market_data/` 目录。
-
-## 主索引格式
-
-每个交易日一个 JSON：
-
-```text
-MCP_MARKET_DATA_YYYYMMDD.json
-```
-
-顶层包含估值日、元数据，以及按 MCP 对象类型分组的数组 / 索引，例如：
-
-| 顶层键 | 内容 |
-|---|---|
-| `valuation_date` | 估值日 `YYYYMMDD` |
-| `_metadata` | 更新时间、版本、数据源 |
-| `SwapCurve` / `YieldCurve` / `YieldCurve2` / `BondCurve` / `BondSpreadCurve` | 利率与债券曲线（内联） |
-| `FXForwardPointsCurve` / `FXForwardPointsCurve2` | FX 远期点 |
-| `FXVolSurface` / `FXVolSurface2` / `VolSurface` / `LocalVol` | FX / 权益 / 商品波动率 |
-| `ForwardCurve` | 商品、贵金属远期 |
-| `CreditCurve` / `HistVol` | 信用曲线、历史波动率节点（可为空数组） |
-| `price_data_index` | 产品类型 → 同目录 HIST CSV |
-| `instrument_classification_index` | 分类表路径 |
-| `bond_clean_prices` / `ir_vol_curves` | 附属净价 / 利率波动率 |
-
-曲线与曲面写在 JSON 内；行情序列、债券条款、分红等在同目录 sidecar CSV / JSON 中，由主索引或约定文件名引用。
-
-## 数据包里有什么
-
-| 类别 | 典型文件 / section |
-|---|---|
-| 日主索引 | `MCP_MARKET_DATA_YYYYMMDD.json` |
-| FX vol / 远期点 | `FXVolSurface`、`FXVolSurface2`、`FXForwardPointsCurve(2)` |
-| 收益率 / 互换 / 债券曲线 | `YieldCurve`、`YieldCurve2`、`SwapCurve`、`BondCurve`、`BondSpreadCurve` |
-| 价格 HIST | `BOND_PRICES_HIST.csv`、`FX_SPOT_PRICES_HIST.csv`、`EQUITY_SPOT_PRICES_HIST.csv` 等 |
-| 债券条款 | `BOND_INFO.csv`、`BOND_INFO.json`、`BOND_INFO_SPEC.csv` |
-| 分红 / 分类 / 静态信息 | `dividends.csv`、`INSTRUMENT_CLASSIFICATION.csv`、`EQUITY_INFO.csv`、`FUND_INFO.csv`、`FUTURE_INFO.csv` |
-
-完整 section 与 sidecar 列表见 [`market_data/README.md`](market_data/README.md)。
-
-## 相对路径
-
-```text
-<repo>/market_data/MCP_MARKET_DATA_20260826.json
-<repo>/market_data/BOND_PRICES_HIST.csv          ← price_data_index.BOND.hist_file
-<repo>/market_data/INSTRUMENT_CLASSIFICATION.csv ← instrument_classification_index.file
-<repo>/market_data/BOND_INFO.csv
-<repo>/market_data/dividends.csv
-```
-
-JSON 与 HIST、辅助表在同一层。不要把数据拆到仓库根、`hist/` 或再套一层 `snapshots/`。
-
-## 目录
-
-```text
-market_data/          # 数据根：指到这里
-  README.md
-  MCP_MARKET_DATA_YYYYMMDD.json
-  *_HIST.csv
-  BOND_INFO.csv / dividends.csv / …
-README.md
 ```
