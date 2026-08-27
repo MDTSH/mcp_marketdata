@@ -3,6 +3,10 @@ __pycache__/
 *.pyo
 .DS_Store
 Thumbs.db
+# Local-only: weekly sync tooling and reports stay on disk, not on GitHub
+reports/
+scripts/
+weekly_sync.log
 reports/weekly_sync.log
 *.tmp
 *.temp
