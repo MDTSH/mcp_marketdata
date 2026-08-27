@@ -22,6 +22,7 @@ from prepare_sync import (
     json_filename_date,
     list_well_known_sidecars,
     parse_as_of,
+    reject_parent_source,
     safe_relpath,
     walk_file_refs,
     load_json,
@@ -79,6 +80,11 @@ def main(argv=None) -> int:
     published = os.path.join(args.dest, PUBLISHED_DIR)
     errors = []
     warnings = []
+
+    parent_err = reject_parent_source(args.source)
+    if parent_err:
+        print(f"ERROR {parent_err}", file=sys.stderr)
+        return 2
 
     if not os.path.isdir(published):
         errors.append(f"published dir missing: {published}")

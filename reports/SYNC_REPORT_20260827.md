@@ -4,9 +4,9 @@
 - window: 2026-05-29 .. 2026-08-27 (90 calendar days)
 - source: `Z:\market_data\snapshots`
 - dest: `D:\work\mcp\github\mcp_marketdata`
-- published_dir: `snapshots` (source mixes JSON + HIST + aux; relative names kept)
+- published_dir: `market_data` (GitHub market_data root; source is snapshots only)
 - dry_run: false
-- dest_published_size: 160.91 MB
+- dest_published_size: 160.92 MB
 
 ## JSON
 

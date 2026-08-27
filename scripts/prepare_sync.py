@@ -3,8 +3,13 @@
 
 Copies MCP_MARKET_DATA_YYYYMMDD.json, referenced HIST/current CSVs, and
 auxiliary sidecars (BOND_INFO, dividends, classification, …) from a source
-snapshots directory (default Z:\\market_data\\snapshots) into dest/snapshots,
-preserving relative paths so RawMD/LiveStore still resolve.
+snapshots directory (default Z:\\market_data\\snapshots) into
+<repo>/market_data, preserving relative paths so MCP Python
+(MRawMarketManager / MLiveMarketDataStore / MMarketDataJsonReader) still
+resolves hist_file and sidecars against that folder.
+
+Source MUST be the snapshots directory. Never walk the parent
+Z:\\market_data tree (live / qh / extra dumps).
 
 This script does not run git commit or git push. weekly_sync.ps1 owns git.
 """
@@ -26,8 +31,13 @@ DEFAULT_SOURCE = r"Z:\market_data\snapshots"
 DEFAULT_DEST = r"D:\work\mcp\github\mcp_marketdata"
 DEFAULT_DAYS = 90
 JSON_NAME_RE = re.compile(r"^MCP_MARKET_DATA_(\d{8})\.json$", re.IGNORECASE)
-PUBLISHED_DIR = "snapshots"
+# Published GitHub market_data root = contents of Z:\market_data\snapshots only.
+PUBLISHED_DIR = "market_data"
+LEGACY_PUBLISHED_DIR = "snapshots"
 REPORTS_DIR = "reports"
+PARENT_SOURCE_SIBLINGS = frozenset(
+    {"live", "qh", "dumps", "dump", "extra", "hist", "current"}
+)
 FILE_REF_KEYS = (
     "hist_file",
     "current_file",
@@ -119,6 +129,54 @@ GITHUB_SOFT_LIMIT_BYTES = 90 * 1024 * 1024
 GITHUB_HARD_LIMIT_BYTES = 100 * 1024 * 1024
 # Publish cap: GitHub.com rejects blobs >= 100MB and this repo must not use LFS.
 GITHUB_PUBLISH_CAP_BYTES = 99 * 1024 * 1024
+
+
+def source_looks_like_parent_market_data(source: str) -> bool:
+    """True if *source* is the parent tree (e.g. Z:\\market_data), not snapshots.
+
+    The parent typically contains a snapshots/ child plus live/qh/extra dumps.
+    Never walk that tree: published files come only from snapshots/.
+    """
+    try:
+        names = os.listdir(source)
+    except OSError:
+        return False
+    lower = {n.lower() for n in names}
+    snap_child = os.path.join(source, "snapshots")
+    has_snap_child = "snapshots" in lower and os.path.isdir(snap_child)
+    if not has_snap_child:
+        return False
+    if lower.intersection(PARENT_SOURCE_SIBLINGS):
+        return True
+    return os.path.basename(os.path.normpath(source)).lower() == "market_data"
+
+
+def reject_parent_source(source: str) -> Optional[str]:
+    if source_looks_like_parent_market_data(source):
+        return (
+            "source must be the snapshots directory "
+            f"(expected ...\\snapshots, got {source}). "
+            "Do not pass the parent Z:\\market_data tree (live/qh/extra dumps)."
+        )
+    return None
+
+
+def remove_legacy_snapshots_tree(dest: str, dry_run: bool) -> List[str]:
+    """Drop leftover dest/snapshots so GitHub does not publish two data trees."""
+    notes: List[str] = []
+    legacy = os.path.join(dest, LEGACY_PUBLISHED_DIR)
+    published = os.path.join(dest, PUBLISHED_DIR)
+    if not os.path.isdir(legacy):
+        return notes
+    if os.path.normpath(os.path.abspath(legacy)) == os.path.normpath(os.path.abspath(published)):
+        return notes
+    notes.append(
+        f"legacy dest/{LEGACY_PUBLISHED_DIR}/ present; "
+        f"{'would remove' if dry_run else 'removing'} so only {PUBLISHED_DIR}/ is published"
+    )
+    if not dry_run:
+        shutil.rmtree(legacy)
+    return notes
 
 
 def parse_yyyymmdd(text: str) -> Optional[date]:
@@ -587,7 +645,7 @@ def build_report(
         f"- window: {start.isoformat()} .. {as_of.isoformat()} ({days} calendar days)",
         f"- source: `{source}`",
         f"- dest: `{dest}`",
-        f"- published_dir: `{PUBLISHED_DIR}` (source mixes JSON + HIST + aux; relative names kept)",
+        f"- published_dir: `{PUBLISHED_DIR}` (GitHub market_data root; source is snapshots only)",
         f"- dry_run: {str(dry_run).lower()}",
         f"- dest_published_size: {format_mb(dest_size)}",
         "",
@@ -646,6 +704,10 @@ def prepare(
     if not os.path.isdir(source):
         print(f"ERROR source missing: {source}", file=sys.stderr)
         return 2
+    parent_err = reject_parent_source(source)
+    if parent_err:
+        print(f"ERROR {parent_err}", file=sys.stderr)
+        return 2
 
     start, end = window_bounds(as_of, days)
     cutoff_ymd = start.strftime("%Y%m%d")
@@ -654,6 +716,7 @@ def prepare(
     print(f"window {start.isoformat()} .. {end.isoformat()} ({days} calendar days)")
     print(f"source {source}")
     print(f"dest   {dest}")
+    print(f"published {published}")
     print(f"dry_run {dry_run}")
 
     all_json = list_source_json(source)
@@ -716,6 +779,7 @@ def prepare(
 
     hist_stats: List[Dict[str, Any]] = []
     warnings: List[str] = []
+    warnings.extend(remove_legacy_snapshots_tree(dest, dry_run))
     for rel in sorted(safe_refs):
         src_path = os.path.join(source, *rel.split("/"))
         dest_path = os.path.join(published, *rel.split("/"))
@@ -831,8 +895,16 @@ def parse_as_of(text: Optional[str]) -> date:
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Prepare 90-day MCP market-data window for GitHub.")
-    parser.add_argument("--source", default=DEFAULT_SOURCE, help="Source snapshots directory")
-    parser.add_argument("--dest", default=DEFAULT_DEST, help="Destination repo root")
+    parser.add_argument(
+        "--source",
+        default=DEFAULT_SOURCE,
+        help="Source snapshots directory only (never parent Z:\\market_data)",
+    )
+    parser.add_argument(
+        "--dest",
+        default=DEFAULT_DEST,
+        help="Destination repo root; published data goes to <dest>/market_data",
+    )
     parser.add_argument("--days", type=int, default=DEFAULT_DAYS, help="Rolling calendar-day window")
     parser.add_argument("--as-of", dest="as_of", default=None, help="Anchor date YYYY-MM-DD or YYYYMMDD")
     parser.add_argument("--dry-run", action="store_true", help="Print actions without writing dest data")

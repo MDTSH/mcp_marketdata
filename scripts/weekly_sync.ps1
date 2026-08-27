@@ -105,10 +105,11 @@ try {
 
     Push-Location $RepoRoot
     try {
-        $addTargets = @("snapshots", "reports", "scripts", "README.md", ".gitignore")
-        if (Test-Path (Join-Path $RepoRoot "hist")) {
-            $addTargets += "hist"
+        $legacySnapshots = Join-Path $RepoRoot "snapshots"
+        if (Test-Path $legacySnapshots) {
+            throw "leftover snapshots/ exists; publish only market_data/ (re-run prepare_sync.py)"
         }
+        $addTargets = @("market_data", "reports", "scripts", "README.md", ".gitignore")
         foreach ($t in $addTargets) {
             if (Test-Path (Join-Path $RepoRoot $t)) {
                 git add -- $t
@@ -133,8 +134,9 @@ try {
         }
 
         $overLimit = @()
-        if (Test-Path (Join-Path $RepoRoot "snapshots")) {
-            $overLimit = @(Get-ChildItem -Path (Join-Path $RepoRoot "snapshots") -Recurse -File |
+        $publishedDir = Join-Path $RepoRoot "market_data"
+        if (Test-Path $publishedDir) {
+            $overLimit = @(Get-ChildItem -Path $publishedDir -Recurse -File |
                 Where-Object { $_.Length -ge 100MB } |
                 ForEach-Object { "{0} ({1:N2} MB)" -f $_.FullName, ($_.Length / 1MB) })
         }
