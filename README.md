@@ -33,7 +33,7 @@
 
 计划任务名：`MCP_MarketData_WeeklySync`
 
-- 每周六本地时间 **06:00**，以当前用户运行
+- 每周六本地时间 **06:00**，以当前用户运行（任务为 **Interactive only**：开机且已登录才会跑；若要未登录也跑，需在任务计划程序里改成“不管用户是否登录”并输入 Windows 密码）
 - 自动执行：`prepare_sync.py` → `verify_window.py` → `git add` / `commit` / `push origin`（当前分支，一般为 `main`）
 - **不会** `git push --force`、`--no-verify`、`commit --amend`，也不会改 git config
 - 使用本机已有 Git 凭据（`credential.helper=store`），脚本不保存密钥

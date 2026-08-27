@@ -58,9 +58,13 @@ function Assert-GitSafe {
         if ($origin -notmatch "github\.com[/:]MDTSH/mcp_marketdata(\.git)?$") {
             throw "refusing to push: origin is '$origin' (expected $RemoteUrl)"
         }
-        $branch = (git rev-parse --abbrev-ref HEAD).Trim()
-        if (-not $branch -or $branch -eq "HEAD") {
-            $branch = "main"
+        $branch = "main"
+        git rev-parse --verify --quiet HEAD >$null 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            $current = (git rev-parse --abbrev-ref HEAD).Trim()
+            if ($current -and $current -ne "HEAD") {
+                $branch = $current
+            }
         }
         return @{ Origin = $origin; Branch = $branch }
     }
