@@ -4,15 +4,15 @@
 
 面向 **MCP Python** 与 **Excel（RawMD / LiveStore）** 的可发布市场数据包。仓库公开滚动约 **90 个自然日** 的日终快照。
 
-配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用。把 Manager / Store 指到本仓库的 [`market_data/`](market_data/README.md)（不要指仓库根目录）。
+配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用。把 Manager / Store 指到本仓库的 [`snapshots/`](snapshots/README.md)（不要指仓库根目录）。
 
 - 仓库：https://github.com/MDTSH/mcp_marketdata
 - Excel / Python 包：[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
-- 字段、对象类型与加载示例见 [`market_data/README.md`](market_data/README.md)
+- 字段、对象类型与加载示例见 [`snapshots/README.md`](snapshots/README.md)
 
 ## 包含了哪些市场数据
 
-数据都在 `market_data/`。一日一份主索引 JSON，曲线和波动率写在 JSON 里；行情序列和静态表是同目录下的 CSV / JSON。
+数据都在 `snapshots/`。一日一份主索引 JSON，曲线和波动率写在 JSON 里；行情序列和静态表是同目录下的 CSV / JSON。
 
 ### 日主索引（曲线 / 曲面）
 
@@ -67,10 +67,10 @@
 
 ## 怎么用
 
-克隆后，把数据根设为 `market_data/` 的绝对路径（或相对工作簿的路径）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。完整示例与字段说明见 [`market_data/README.md`](market_data/README.md)。
+克隆后，把数据根设为 `snapshots/` 的绝对路径（或相对工作簿的路径）。一日一份主索引：`MCP_MARKET_DATA_YYYYMMDD.json`。完整示例与字段说明见 [`snapshots/README.md`](snapshots/README.md)。
 
 ```python
 import mcp
-mgr = mcp.MRawMarketManager(r".../mcp_marketdata/market_data")
+mgr = mcp.MRawMarketManager(r".../mcp_marketdata/snapshots")
 yc = mgr.getYieldCurve("CNHDEPO", "20260826")
 ```

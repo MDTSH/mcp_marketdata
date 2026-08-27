@@ -1,6 +1,6 @@
 [中文](README.md) | [English](README.en.md)
 
-# market_data/
+# snapshots/
 
 This folder is the **market-data root** published by [MDTSH/mcp_marketdata](https://github.com/MDTSH/mcp_marketdata).
 
@@ -89,7 +89,7 @@ This folder also has **rate-index fixings** `IR_INDEX_FIXINGS_HIST.csv` (e.g. EF
 ```python
 import mcp
 
-root = r".../mcp_marketdata/market_data"  # your clone path
+root = r".../mcp_marketdata/snapshots"  # your clone path
 
 mgr = mcp.MRawMarketManager(root)
 yc = mgr.getYieldCurve("CNHDEPO", "20260826")
@@ -110,17 +110,17 @@ A valuation engine can set `raw_market_data_root` / `MCP_MARKET_DATA_ROOT` to th
 ### Excel RawMD / LiveStore
 
 ```excel
-=McpRawMarketManager(".../mcp_marketdata/market_data")
+=McpRawMarketManager(".../mcp_marketdata/snapshots")
 =rawmdGetYieldCurve2(A1, "CNHDEPO_2", "20260826")
 =rawmdGetFXVolSurface2(A1, "USDCNH_RVOL_BGN_2", "20260826")
 =rawmdAvailableDates(A1)
 
-=McpLiveMarketDataStore(".../mcp_marketdata/market_data/MCP_MARKET_DATA_20260826.json")
+=McpLiveMarketDataStore(".../mcp_marketdata/snapshots/MCP_MARKET_DATA_20260826.json")
 =mdlsGetFXVolSurface2(B1, "USDCNH_RVOL_BGN_2")
 =mdlsGetSwapCurve(B1, "CNY_SWAP_FR007_BGN")
 ```
 
-`McpResolvePath("market_data")` can turn a workbook-relative path into an absolute path. After you have a curve / surface object, use existing UDFs such as `YieldCurve2ZeroRate` and `FXVolSurface2GetVolatility`. Function notes: [Raw Market Data](https://help.mathema.com.cn/zh/latest/api/rawmarketdata.html).
+`McpResolvePath("snapshots")` can turn a workbook-relative path into an absolute path. After you have a curve / surface object, use existing UDFs such as `YieldCurve2ZeroRate` and `FXVolSurface2GetVolatility`. Function notes: [Raw Market Data](https://help.mathema.com.cn/zh/latest/api/rawmarketdata.html).
 
 ### Object chain
 
@@ -170,11 +170,11 @@ Unused types may be `[]` or `{}`. `curve_id` is what `get*` / `rawmdGet*` / `mdl
 ## Relative-path convention
 
 ```text
-<repo>/market_data/MCP_MARKET_DATA_20260826.json
-<repo>/market_data/BOND_PRICES_HIST.csv          ← price_data_index.BOND.hist_file
-<repo>/market_data/INSTRUMENT_CLASSIFICATION.csv ← instrument_classification_index.file
-<repo>/market_data/BOND_INFO.csv                 ← convention file name
-<repo>/market_data/dividends.csv                 ← convention file name
+<repo>/snapshots/MCP_MARKET_DATA_20260826.json
+<repo>/snapshots/BOND_PRICES_HIST.csv          ← price_data_index.BOND.hist_file
+<repo>/snapshots/INSTRUMENT_CLASSIFICATION.csv ← instrument_classification_index.file
+<repo>/snapshots/BOND_INFO.csv                 ← convention file name
+<repo>/snapshots/dividends.csv                 ← convention file name
 ```
 
-Do not split data to the repo root, `hist/`, or `snapshots/`. Manager / Store must point at this folder, not the parent repository root.
+Do not split data to the repo root or `hist/`. Manager / Store must point at this folder (`snapshots/`), not the parent repository root.

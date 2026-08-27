@@ -4,15 +4,15 @@
 
 A publishable market-data pack for **MCP Python** and **Excel (RawMD / LiveStore)**. The public window is a rolling **~90 calendar days** of end-of-day snapshots.
 
-Use it with [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel). Point Manager / Store at this repo’s [`market_data/`](market_data/README.en.md) folder (not the repository root).
+Use it with [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel). Point Manager / Store at this repo’s [`snapshots/`](snapshots/README.en.md) folder (not the repository root).
 
 - Repository: https://github.com/MDTSH/mcp_marketdata
 - Excel / Python package: [Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
-- Field names, object types, and load examples: [`market_data/README.en.md`](market_data/README.en.md)
+- Field names, object types, and load examples: [`snapshots/README.en.md`](snapshots/README.en.md)
 
 ## What market data is included
 
-Everything lives under `market_data/`. There is one master-index JSON per valuation date. Curves and volatility surfaces are inline in that JSON; price history and static tables are sidecar files in the same folder.
+Everything lives under `snapshots/`. There is one master-index JSON per valuation date. Curves and volatility surfaces are inline in that JSON; price history and static tables are sidecar files in the same folder.
 
 ### Daily master index (curves / surfaces)
 
@@ -67,10 +67,10 @@ Reference files used for valuation, scenarios, and code mapping, in the same fol
 
 ## How to use
 
-After cloning, set the data root to the `market_data/` folder (absolute path, or a path relative to the workbook). One master index per day: `MCP_MARKET_DATA_YYYYMMDD.json`. Full examples and field notes: [`market_data/README.en.md`](market_data/README.en.md).
+After cloning, set the data root to the `snapshots/` folder (absolute path, or a path relative to the workbook). One master index per day: `MCP_MARKET_DATA_YYYYMMDD.json`. Full examples and field notes: [`snapshots/README.en.md`](snapshots/README.en.md).
 
 ```python
 import mcp
-mgr = mcp.MRawMarketManager(r".../mcp_marketdata/market_data")
+mgr = mcp.MRawMarketManager(r".../mcp_marketdata/snapshots")
 yc = mgr.getYieldCurve("CNHDEPO", "20260826")
 ```
