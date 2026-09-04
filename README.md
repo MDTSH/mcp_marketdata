@@ -2,12 +2,17 @@
 
 # mcp_marketdata
 
-面向 **MCP Python** 与 **Excel（RawMD / LiveStore）** 的可发布市场数据包。仓库公开滚动约 **90 个自然日** 的日终快照。
+市场数据标准包，不是行情下载站。
+
+本仓库给出的是经过清洗、整理、并按类型预定义惯例的日终快照。JSON 顶层键与 MCP 对象一一对应（`SwapCurve`、`YieldCurve`、`FXVolSurface`、`CreditCurve` …）。每个节点本身就是该类数据的定义：日历、日计数、插值、单位都已写好。有这类节点，就有这类数据的定义。
+
+中国市场滚动约 **90 个自然日** 的日终包，是这份标准的公开样本。经 MCP 转换成引擎对象后，可直接用于 Excel、Python 和估值批次——定价与风险共用同一套定义。
 
 配合 [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel) 使用。把 Manager / Store 指到本仓库的 [`snapshots/`](snapshots/README.md)（不要指仓库根目录）。
 
 - 仓库：https://github.com/MDTSH/mcp_marketdata
 - Excel / Python 包：[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
+- 帮助站：[Raw Market Data](https://help.mathema.com.cn/zh/latest/api/rawmarketdata.html)、[市场数据就绪](https://help.mathema.com.cn/zh/latest/docs/risk/market_data_readiness.html)
 - 字段、对象类型与加载示例见 [`snapshots/README.md`](snapshots/README.md)
 
 ## 包含了哪些市场数据

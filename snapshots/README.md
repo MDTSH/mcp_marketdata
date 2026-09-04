@@ -4,7 +4,9 @@
 
 本目录是 [MDTSH/mcp_marketdata](https://github.com/MDTSH/mcp_marketdata) 发布的 **市场数据根目录**。
 
-配合 **[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)** 使用；可以直接通过MCP Python直接生成数据对象，比如：收益率曲线或波动率曲面等。
+顶层键与 MCP 对象类型一一对应。每个节点带齐日历、日计数、插值与单位——有这类节点，就有这类数据的定义。中国日终包是这份标准的公开样本。
+
+配合 **[Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)** 使用；MCP 转换成收益率曲线、波动率曲面等对象后，可直接用于定价与风险。
 
 MCP Python 与 Excel RawMD 的 **root** = **本文件夹**。主索引文件名：`MCP_MARKET_DATA_YYYYMMDD.json`。JSON 内的相对路径（`hist_file`、`current_file`、`file`、约定 sidecar 文件名）都相对这里解析。
 

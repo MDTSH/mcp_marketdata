@@ -4,7 +4,11 @@
 
 This folder is the **market-data root** published by [MDTSH/mcp_marketdata](https://github.com/MDTSH/mcp_marketdata).
 
-Use it with [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel). For MCP Python and Excel RawMD, **root** = **this folder**. Master-index file name: `MCP_MARKET_DATA_YYYYMMDD.json`. Relative paths inside the JSON (`hist_file`, `current_file`, `file`, and convention sidecar names) resolve against this folder.
+Top-level keys match MCP object types one-for-one. Each node already carries calendar, day-count, interpolation and units — having the node *is* having a definition of that type. The China EOD pack is the public sample of that standard.
+
+Use it with [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel). After MCP conversion you get yield curves, vol surfaces and related objects you can pass straight into pricing and risk.
+
+For MCP Python and Excel RawMD, **root** = **this folder**. Master-index file name: `MCP_MARKET_DATA_YYYYMMDD.json`. Relative paths inside the JSON (`hist_file`, `current_file`, `file`, and convention sidecar names) resolve against this folder.
 
 The pack covers a rolling **~90 calendar days** of end-of-day snapshots. Loaders read raw quotes (rates, forward points, volatility, HIST prices), then bootstrap / interpolate MCP objects.
 

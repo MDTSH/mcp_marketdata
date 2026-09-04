@@ -2,12 +2,17 @@
 
 # mcp_marketdata
 
-A publishable market-data pack for **MCP Python** and **Excel (RawMD / LiveStore)**. The public window is a rolling **~90 calendar days** of end-of-day snapshots.
+A market-data standard pack — not a quote dump.
+
+This repository publishes cleaned, organised end-of-day snapshots with conventions pre-defined per type. Top-level JSON keys match MCP objects one-for-one (`SwapCurve`, `YieldCurve`, `FXVolSurface`, `CreditCurve`, …). Each node *is* the definition of that data type: calendar, day-count, interpolation and units are already filled in. Having the node means having the type.
+
+The China window of about **90 calendar days** is the public sample of that standard. After MCP conversion you get engine objects you can use in Excel, Python and valuation batches — pricing and risk share the same definition.
 
 Use it with [**Mathema MCP Excel**](https://github.com/MDTSH/mcp_excel). Point Manager / Store at this repo’s [`snapshots/`](snapshots/README.en.md) folder (not the repository root).
 
 - Repository: https://github.com/MDTSH/mcp_marketdata
 - Excel / Python package: [Mathema MCP Excel](https://github.com/MDTSH/mcp_excel)
+- Help site: [Raw Market Data](https://help.mathema.com.cn/latest/api/rawmarketdata.html), [Market-data readiness](https://help.mathema.com.cn/latest/docs/risk/market_data_readiness.html)
 - Field names, object types, and load examples: [`snapshots/README.en.md`](snapshots/README.en.md)
 
 ## What market data is included

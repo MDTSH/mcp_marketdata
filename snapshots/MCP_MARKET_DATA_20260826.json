@@ -519,9 +519,9 @@
   "ReferenceDate": "20260826",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
-  "Tenors": [],
-  "BidZeroRates": [],
-  "AskZeroRates": []
+  "Tenors": ["ON", "2W", "1M", "3M"],
+  "BidZeroRates": [0.0515, 0.0575, 0.0602, 0.065],
+  "AskZeroRates": [0.052, 0.0585, 0.0612, 0.066]
 }, {
   "curve_id": "JPYDEPO_2",
   "ReferenceDate": "20260826",
