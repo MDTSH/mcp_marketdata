@@ -12,7 +12,7 @@
   "InterpolatedVariable": "CONTINUOUSRATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act365Fixed",
@@ -39,7 +39,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -66,7 +66,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -93,7 +93,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -120,7 +120,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -147,7 +147,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -174,7 +174,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -201,7 +201,7 @@
   "InterpolatedVariable": "CONTINUOUSRATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act360",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -228,7 +228,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -255,7 +255,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "ActActISDA",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -282,7 +282,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act360",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -308,7 +308,7 @@
   "InterpolatedVariable": "SIMPLERATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act365Fixed",
@@ -334,7 +334,7 @@
   "InterpolatedVariable": "CONTINUOUSRATES",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act360",
-  "useGlobalSolver": true,
+  "useGlobalSolver": false,
   "CalibrationSet": {
     "OvernightRateCurveData": {
       "DayCounter": "Act360",
@@ -357,6 +357,7 @@
   "YieldCurve": [{
   "curve_id": "AUDDEPO",
   "referenceDate": "20260703",
+  "calendar": "AUD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -364,6 +365,7 @@
 }, {
   "curve_id": "CNHDEPO",
   "referenceDate": "20260703",
+  "calendar": "CNH",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "2W", "1M", "2M", "3M", "6M", "9M", "1Y", "2Y"],
@@ -371,6 +373,7 @@
 }, {
   "curve_id": "CNYSHIBOR",
   "referenceDate": "20260703",
+  "calendar": "CNY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": [],
@@ -378,6 +381,7 @@
 }, {
   "curve_id": "EURDEPO",
   "referenceDate": "20260703",
+  "calendar": "EUR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y", "7Y", "10Y"],
@@ -385,6 +389,7 @@
 }, {
   "curve_id": "GBPDEPO",
   "referenceDate": "20260703",
+  "calendar": "GBP",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y"],
@@ -392,6 +397,7 @@
 }, {
   "curve_id": "IDRDEPO",
   "referenceDate": "20260703",
+  "calendar": "IDR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "SW", "2W", "1M", "3M", "6M", "1Y"],
@@ -399,6 +405,7 @@
 }, {
   "curve_id": "INRDEPO",
   "referenceDate": "20260703",
+  "calendar": "INR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "2W", "1M", "3M"],
@@ -406,6 +413,7 @@
 }, {
   "curve_id": "JPYDEPO",
   "referenceDate": "20260703",
+  "calendar": "JPY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -413,6 +421,7 @@
 }, {
   "curve_id": "KZTDEPO",
   "referenceDate": "20260703",
+  "calendar": "KZT",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "1W", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -420,6 +429,7 @@
 }, {
   "curve_id": "MYRDEPO",
   "referenceDate": "20260703",
+  "calendar": "MYR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "1M", "2M", "3M", "6M", "1Y"],
@@ -427,6 +437,7 @@
 }, {
   "curve_id": "NZDDEPO",
   "referenceDate": "20260703",
+  "calendar": "NZD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -434,6 +445,7 @@
 }, {
   "curve_id": "RUBDEPO",
   "referenceDate": "20260703",
+  "calendar": "RUB",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["TN", "SW", "2W", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -441,6 +453,7 @@
 }, {
   "curve_id": "SGDDEPO",
   "referenceDate": "20260703",
+  "calendar": "SGD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "2W", "1M", "2M", "3M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -448,6 +461,7 @@
 }, {
   "curve_id": "THBDEPO",
   "referenceDate": "20260703",
+  "calendar": "THB",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -455,6 +469,7 @@
 }, {
   "curve_id": "USDDEPO",
   "referenceDate": "20260703",
+  "calendar": "USD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y"],
@@ -462,6 +477,7 @@
 }, {
   "curve_id": "ZARDEPO",
   "referenceDate": "20260703",
+  "calendar": "ZAR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -469,6 +485,7 @@
 }, {
   "curve_id": "CNYDEPO",
   "referenceDate": "20260703",
+  "calendar": "CNY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "SW", "2W", "1M", "3M", "6M", "9M", "1Y"],
@@ -476,6 +493,7 @@
 }, {
   "curve_id": "HKDDEPO",
   "referenceDate": "20260703",
+  "calendar": "HKD",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
   "ZeroRates": [0.025, 0.0245, 0.0245, 0.0258, 0.02475, 0.02375, 0.0265, 0.0275, 0.0285, 0.0315, 0.0319, 0.031, 0.0282, 0.0287, 0.033, 0.0384, 0.0301, 0.0345],
   "InterpolationMethod": "LINEARINTERPOLATION",
@@ -484,6 +502,7 @@
   "YieldCurve2": [{
   "curve_id": "AUDDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "AUD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -492,6 +511,7 @@
 }, {
   "curve_id": "CNHDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "CNH",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "2W", "1M", "2M", "3M", "6M", "9M", "1Y", "2Y"],
@@ -500,6 +520,7 @@
 }, {
   "curve_id": "CNYSHIBOR_2",
   "ReferenceDate": "20260703",
+  "calendar": "CNY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": [],
@@ -508,6 +529,7 @@
 }, {
   "curve_id": "EURDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "EUR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y", "7Y", "10Y"],
@@ -516,6 +538,7 @@
 }, {
   "curve_id": "GBPDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "GBP",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y"],
@@ -524,6 +547,7 @@
 }, {
   "curve_id": "IDRDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "IDR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "SW", "2W", "1M", "3M", "6M", "1Y"],
@@ -532,6 +556,7 @@
 }, {
   "curve_id": "INRDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "INR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "2W", "1M", "3M"],
@@ -540,6 +565,7 @@
 }, {
   "curve_id": "JPYDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "JPY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -548,6 +574,7 @@
 }, {
   "curve_id": "KZTDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "KZT",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "1W", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -556,6 +583,7 @@
 }, {
   "curve_id": "MYRDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "MYR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "1M", "2M", "3M", "6M", "1Y"],
@@ -564,6 +592,7 @@
 }, {
   "curve_id": "NZDDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "NZD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -572,6 +601,7 @@
 }, {
   "curve_id": "RUBDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "RUB",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["TN", "SW", "2W", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -580,6 +610,7 @@
 }, {
   "curve_id": "SGDDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "SGD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "2W", "1M", "2M", "3M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -588,6 +619,7 @@
 }, {
   "curve_id": "THBDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "THB",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "1M", "2M", "3M", "6M", "9M", "1Y"],
@@ -596,6 +628,7 @@
 }, {
   "curve_id": "USDDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "USD",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "2Y", "3Y", "4Y", "5Y"],
@@ -604,6 +637,7 @@
 }, {
   "curve_id": "ZARDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "ZAR",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "TN", "SW", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
@@ -612,11 +646,21 @@
 }, {
   "curve_id": "CNYDEPO_2",
   "ReferenceDate": "20260703",
+  "calendar": "CNY",
   "InterpolationMethod": "LINEARINTERPOLATION",
   "DayCounter": "Act365Fixed",
   "Tenors": ["ON", "SW", "2W", "1M", "3M", "6M", "9M", "1Y"],
   "BidZeroRates": [0.01369, 0.0144, 0.0145, 0.0139, 0.014, 0.0145, 0.0147, 0.0148],
   "AskZeroRates": [0.01419, 0.015, 0.0152, 0.0147, 0.0152, 0.016, 0.0165, 0.0168]
+}, {
+  "curve_id": "HKDDEPO_2",
+  "ReferenceDate": "20260703",
+  "calendar": "HKD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y"],
+  "BidZeroRates": [0.0235, 0.024, 0.024, 0.0253, 0.0225, 0.02, 0.0255, 0.0265, 0.0275, 0.0294, 0.0298, 0.03, 0.0222, 0.0227, 0.032, 0.0324, 0.0241, 0.0335],
+  "AskZeroRates": [0.0265, 0.025, 0.025, 0.0263, 0.027, 0.0275, 0.0275, 0.0285, 0.0295, 0.0336, 0.034, 0.032, 0.0342, 0.0347, 0.034, 0.0444, 0.0361, 0.0355]
 }],
   "BondCurve": [{
   "curve_id": "CNY_BOND_TREASURY",
@@ -3345,6 +3389,32 @@
   "AskFXSpotRate": 0.3885,
   "Construction": "Cross",
   "ScaleFactor": 10000
+}, {
+  "curve_id": "EURJPY_FXFP_BGN_2",
+  "ReferenceDate": "20260703",
+  "calendar": "EURJPY",
+  "Pair": "EUR/JPY",
+  "BidFXSpotRate": 184.53,
+  "AskFXSpotRate": 184.57,
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "ScaleFactor": 100,
+  "Tenors": ["ON", "TN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "15M", "18M", "2Y"],
+  "BidForwardPoints": [-3.49, -1.02, -5.12, -9.98, -14.84, -22.08, -44.39, -66.44, -92.03, -111.94, -136.81, -159.71, -179.11, -199.99, -215.34, -240.76, -260.39, -313.93, -365.7, -446.61],
+  "AskForwardPoints": [-0.43, -0.34, -4.56, -9.28, -14.07, -21.16, -43.9, -65.71, -88.09, -107.13, -130.31, -150.77, -168.73, -188.16, -212.51, -224.32, -243.2, -298.11, -345.74, -431.66],
+  "aliases": ["EURJPY_FXFP_2"]
+}, {
+  "curve_id": "USDJPY_FXFP_BGN_2",
+  "ReferenceDate": "20260703",
+  "calendar": "USDJPY",
+  "Pair": "USD/JPY",
+  "BidFXSpotRate": 161.37,
+  "AskFXSpotRate": 161.38,
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "ScaleFactor": 100,
+  "Tenors": ["ON", "TN", "SN", "SW", "2W", "3W", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "10M", "11M", "1Y", "15M", "18M", "21M", "2Y", "3Y"],
+  "BidForwardPoints": [-1.45, -3.8, -1.331, -8.86, -17.64, -26.49, -39.53, -80.61, -119.13, -162.77, -199.33, -243.57, -285.6, -321.8, -361.35, -399.35, -438.5, -476.2, -591.0, -688.73, -793.0, -885.0, -1214.0],
+  "AskForwardPoints": [-1.05, -3.6, -1.131, -8.56, -17.24, -25.99, -38.93, -79.81, -118.13, -161.17, -196.83, -240.57, -281.6, -317.3, -355.85, -393.85, -432.5, -470.2, -575.0, -682.27, -769.0, -855.0, -1174.0],
+  "aliases": ["USDJPY_FXFP_2"]
 }],
   "ForwardCurve": [{
   "curve_id": "SCM_FORWARD",
