@@ -353,6 +353,33 @@
       "Yields": []
     }
   }
+}, {
+  "curve_id": "CNY_SWAP_SHIBOR3M",
+  "SettlementDate": "20260904",
+  "calendar": "CNY",
+  "InterpolatedVariable": "CONTINUOUSRATES",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "useGlobalSolver": false,
+  "CalibrationSet": {
+    "OvernightRateCurveData": {
+      "DayCounter": "Act365Fixed",
+      "Tenors": [],
+      "Yields": []
+    },
+    "VanillaSwapCurveData": {
+      "DayCounter": "Act365Fixed",
+      "RateConvention": "SHIBOR3M",
+      "Tenors": ["6M", "9M", "1Y", "2Y", "3Y", "4Y", "5Y", "7Y", "10Y"],
+      "Yields": [0.0144, 0.0144, 0.0145, 0.0145, 0.0147, 0.015, 0.0154, 0.0161, 0.0169]
+    },
+    "BillCurveData": {
+      "DayCounter": "Act365Fixed",
+      "Tenors": ["ON", "SW", "2W", "1M", "3M"],
+      "Yields": [0.01362, 0.01376, 0.013869, 0.014188, 0.0143]
+    }
+  },
+  "aliases": ["CNY_SHIBOR3M"]
 }],
   "YieldCurve": [{
   "curve_id": "AUDDEPO",
@@ -499,6 +526,24 @@
   "YieldCurve": "USDDEPO",
   "IsCCY2": true,
   "aliases": ["MXNDEPO"]
+}, {
+  "curve_id": "EURGOVT",
+  "referenceDate": "20260904",
+  "calendar": "EUR",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["3M", "6M", "9M", "1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "11Y", "12Y", "13Y", "14Y", "15Y", "16Y", "17Y", "18Y", "19Y", "20Y", "21Y", "22Y", "23Y", "24Y", "25Y", "26Y", "27Y", "28Y", "29Y", "30Y"],
+  "ZeroRates": [0.02547691, 0.02667908, 0.02753189, 0.02815091, 0.02956009, 0.03054177, 0.03156758, 0.03265591, 0.03375674, 0.03482867, 0.03584669, 0.03679771, 0.03767595, 0.03847992, 0.03921062, 0.03987044, 0.04046253, 0.04099047, 0.04145799, 0.04186886, 0.04222679, 0.04253539, 0.04279812, 0.0430183, 0.04319906, 0.04334336, 0.04345401, 0.04353363, 0.04358469, 0.0436095, 0.04361023, 0.04358889, 0.04354738],
+  "aliases": ["EUR_GOVT"]
+}, {
+  "curve_id": "USDTREASURY",
+  "referenceDate": "20260904",
+  "calendar": "USD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1M", "6W", "2M", "3M", "4M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
+  "ZeroRates": [0.0371635, 0.03739, 0.038053, 0.038496, 0.039367, 0.039998, 0.0412205, 0.043757, 0.044497, 0.045483, 0.046562, 0.0478205, 0.0524845, 0.0524465],
+  "aliases": ["USD_TREASURY"]
 }],
   "YieldCurve2": [{
   "curve_id": "AUDDEPO_2",
@@ -662,6 +707,26 @@
   "YieldCurve2": "USDDEPO_2",
   "IsCCY2": true,
   "aliases": ["MXNDEPO_2"]
+}, {
+  "curve_id": "EURGOVT_2",
+  "ReferenceDate": "20260904",
+  "calendar": "EUR",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["3M", "6M", "9M", "1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "11Y", "12Y", "13Y", "14Y", "15Y", "16Y", "17Y", "18Y", "19Y", "20Y", "21Y", "22Y", "23Y", "24Y", "25Y", "26Y", "27Y", "28Y", "29Y", "30Y"],
+  "BidZeroRates": [0.02547691, 0.02667908, 0.02753189, 0.02815091, 0.02956009, 0.03054177, 0.03156758, 0.03265591, 0.03375674, 0.03482867, 0.03584669, 0.03679771, 0.03767595, 0.03847992, 0.03921062, 0.03987044, 0.04046253, 0.04099047, 0.04145799, 0.04186886, 0.04222679, 0.04253539, 0.04279812, 0.0430183, 0.04319906, 0.04334336, 0.04345401, 0.04353363, 0.04358469, 0.0436095, 0.04361023, 0.04358889, 0.04354738],
+  "AskZeroRates": [0.02547691, 0.02667908, 0.02753189, 0.02815091, 0.02956009, 0.03054177, 0.03156758, 0.03265591, 0.03375674, 0.03482867, 0.03584669, 0.03679771, 0.03767595, 0.03847992, 0.03921062, 0.03987044, 0.04046253, 0.04099047, 0.04145799, 0.04186886, 0.04222679, 0.04253539, 0.04279812, 0.0430183, 0.04319906, 0.04334336, 0.04345401, 0.04353363, 0.04358469, 0.0436095, 0.04361023, 0.04358889, 0.04354738],
+  "aliases": ["EUR_GOVT_2"]
+}, {
+  "curve_id": "USDTREASURY_2",
+  "ReferenceDate": "20260904",
+  "calendar": "USD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1M", "6W", "2M", "3M", "4M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
+  "BidZeroRates": [0.03724, 0.03748, 0.03817, 0.03855, 0.03943, 0.04005, 0.04133, 0.04379, 0.04451, 0.0455, 0.04659, 0.04784, 0.0525, 0.05246],
+  "AskZeroRates": [0.037087, 0.0373, 0.037936, 0.038442, 0.039304, 0.039946, 0.041111, 0.043724, 0.044484, 0.045466, 0.046534, 0.047801, 0.052469, 0.052433],
+  "aliases": ["USD_TREASURY_2"]
 }],
   "BondCurve": [{
   "curve_id": "CNY_BOND_TREASURY",
