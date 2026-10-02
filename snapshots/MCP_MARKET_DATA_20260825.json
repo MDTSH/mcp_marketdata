@@ -544,6 +544,33 @@
   "Tenors": ["1M", "6W", "2M", "3M", "4M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
   "ZeroRates": [0.0369575, 0.0369485, 0.037191, 0.037902, 0.038429, 0.039017, 0.039894, 0.0418555, 0.042455, 0.0433945, 0.0446575, 0.0462995, 0.051545, 0.051649],
   "aliases": ["USD_TREASURY"]
+}, {
+  "curve_id": "JPYTREASURY",
+  "referenceDate": "20260825",
+  "calendar": "JPY",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "15Y", "20Y", "25Y", "30Y", "40Y"],
+  "ZeroRates": [0.01447, 0.01684, 0.01836, 0.02023, 0.02167, 0.02305, 0.02443, 0.02616, 0.02754, 0.02897, 0.03461, 0.03764, 0.04055, 0.0404, 0.0406],
+  "aliases": ["JPY_TREASURY"]
+}, {
+  "curve_id": "SGDGOVT",
+  "referenceDate": "20260825",
+  "calendar": "SGD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1M", "3M", "6M", "1Y", "2Y", "5Y", "10Y", "15Y", "20Y", "30Y", "50Y"],
+  "ZeroRates": [0.01375, 0.01465, 0.015245, 0.0162495, 0.016419, 0.019309, 0.0229, 0.023605, 0.023697, 0.0242315, 0.0257825],
+  "aliases": ["SGD_GOVT"]
+}, {
+  "curve_id": "AUDGOVT",
+  "referenceDate": "20260825",
+  "calendar": "AUD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "12Y", "15Y", "20Y", "30Y"],
+  "ZeroRates": [0.04576, 0.04583, 0.045585, 0.045615, 0.046195, 0.04696, 0.047715, 0.048715, 0.049665, 0.05002, 0.05074, 0.052525, 0.054595, 0.05554],
+  "aliases": ["AUD_GOVT"]
 }],
   "YieldCurve2": [{
   "curve_id": "AUDDEPO_2",
@@ -727,6 +754,36 @@
   "BidZeroRates": [0.03701, 0.03701, 0.03727, 0.03798, 0.03852, 0.03912, 0.04007, 0.04197, 0.04257, 0.04349, 0.04475, 0.04639, 0.05164, 0.05174],
   "AskZeroRates": [0.036905, 0.036887, 0.037112, 0.037824, 0.038338, 0.038914, 0.039718, 0.041741, 0.04234, 0.043299, 0.044565, 0.046209, 0.05145, 0.051558],
   "aliases": ["USD_TREASURY_2"]
+}, {
+  "curve_id": "JPYTREASURY_2",
+  "ReferenceDate": "20260825",
+  "calendar": "JPY",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "15Y", "20Y", "25Y", "30Y", "40Y"],
+  "BidZeroRates": [0.01447, 0.01684, 0.01836, 0.02023, 0.02167, 0.02305, 0.02443, 0.02616, 0.02754, 0.02897, 0.03461, 0.03764, 0.04055, 0.0404, 0.0406],
+  "AskZeroRates": [0.01447, 0.01684, 0.01836, 0.02023, 0.02167, 0.02305, 0.02443, 0.02616, 0.02754, 0.02897, 0.03461, 0.03764, 0.04055, 0.0404, 0.0406],
+  "aliases": ["JPY_TREASURY_2"]
+}, {
+  "curve_id": "SGDGOVT_2",
+  "ReferenceDate": "20260825",
+  "calendar": "SGD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1M", "3M", "6M", "1Y", "2Y", "5Y", "10Y", "15Y", "20Y", "30Y", "50Y"],
+  "BidZeroRates": [0.014, 0.0149, 0.01549, 0.016502, 0.016523, 0.019418, 0.023036, 0.023766, 0.023848, 0.024395, 0.025962],
+  "AskZeroRates": [0.0135, 0.0144, 0.015, 0.015997, 0.016315, 0.0192, 0.022764, 0.023444, 0.023546, 0.024068, 0.025603],
+  "aliases": ["SGD_GOVT_2"]
+}, {
+  "curve_id": "AUDGOVT_2",
+  "ReferenceDate": "20260825",
+  "calendar": "AUD",
+  "InterpolationMethod": "LINEARINTERPOLATION",
+  "DayCounter": "Act365Fixed",
+  "Tenors": ["1Y", "2Y", "3Y", "4Y", "5Y", "6Y", "7Y", "8Y", "9Y", "10Y", "12Y", "15Y", "20Y", "30Y"],
+  "BidZeroRates": [0.04591, 0.04589, 0.04564, 0.04568, 0.04627, 0.04704, 0.04778, 0.04879, 0.04974, 0.05007, 0.0508, 0.05263, 0.05475, 0.05568],
+  "AskZeroRates": [0.04561, 0.04577, 0.04553, 0.04555, 0.04612, 0.04688, 0.04765, 0.04864, 0.04959, 0.04997, 0.05068, 0.05242, 0.05444, 0.0554],
+  "aliases": ["AUD_GOVT_2"]
 }],
   "BondCurve": [{
   "curve_id": "CNY_BOND_TREASURY",
